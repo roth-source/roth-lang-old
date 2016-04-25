@@ -1,9 +1,11 @@
 package roth.lang.java;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 
 import roth.lang.List;
+import roth.lang.Set;
 
 public abstract class JavaType extends JavaCode
 {
@@ -12,6 +14,7 @@ public abstract class JavaType extends JavaCode
 	protected int hashCode;
 	protected String _package;
 	protected List<String> enclosures = new List<>();
+	protected Set<JavaAnnotationDeclaration> annotationDeclarations = new Set<>();
 	protected JavaAccess access;
 	protected boolean _static;
 	protected boolean member;
@@ -30,6 +33,10 @@ public abstract class JavaType extends JavaCode
 		while((enclosingClass = enclosingClass.getEnclosingClass()) != null)
 		{
 			enclosures.addFirst(enclosingClass.getSimpleName());
+		}
+		for(Annotation declaredAnnotation : _class.getDeclaredAnnotations())
+		{
+			annotationDeclarations.add(new JavaAnnotationDeclaration(declaredAnnotation));
 		}
 		access = JavaAccess.fromModifiers(_class.getModifiers());
 		_static = Modifier.isStatic(_class.getModifiers());
@@ -189,7 +196,7 @@ public abstract class JavaType extends JavaCode
 		{
 			if(_class.isAnnotation())
 			{
-				type = new JavaAnnotationInterface(_class);
+				type = new JavaAnnotation(_class);
 			}
 			else if(_class.isEnum())
 			{

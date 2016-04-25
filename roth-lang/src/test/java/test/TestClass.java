@@ -2,7 +2,7 @@ package test;
 
 import roth.lang.java.JavaType;
 
-@TestAnnotationInterface(test2 = "asdf")
+@TestAnnotation(test2 = "asdf")
 public class TestClass
 {
 	public static final String TEST = "1234";

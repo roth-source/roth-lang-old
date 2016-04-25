@@ -1,10 +1,14 @@
 package roth.lang.java;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import roth.lang.Set;
+
 public class JavaField extends JavaVariable
 {
+	protected Set<JavaAnnotationDeclaration> annotationDeclarations = new Set<>();
 	protected JavaAccess access;
 	protected boolean _static;
 	protected boolean _volatile;
@@ -17,6 +21,10 @@ public class JavaField extends JavaVariable
 	
 	public JavaField(Field field)
 	{
+		for(Annotation declaredAnnotation : field.getDeclaredAnnotations())
+		{
+			annotationDeclarations.add(new JavaAnnotationDeclaration(declaredAnnotation));
+		}
 		access = JavaAccess.fromModifiers(field.getModifiers());
 		_static = Modifier.isStatic(field.getModifiers());
 		_final = Modifier.isFinal(field.getModifiers());

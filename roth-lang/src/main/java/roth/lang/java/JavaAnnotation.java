@@ -4,22 +4,22 @@ import java.lang.reflect.Method;
 
 import roth.lang.Set;
 
-public class JavaAnnotationInterface extends JavaType
+public class JavaAnnotation extends JavaType
 {
-	protected Set<JavaMethod> methods = new Set<>();
+	protected Set<JavaMethod> attributeMethods = new Set<>();
 	
-	public JavaAnnotationInterface()
+	public JavaAnnotation()
 	{
 		
 	}
 	
-	public JavaAnnotationInterface(Class<?> _class)
+	public JavaAnnotation(Class<?> _class)
 	{
 		super(_class);
 		for(Method declaredMethod : _class.getDeclaredMethods())
 		{
 			JavaMethod method = new JavaMethod(declaredMethod);
-			methods.add(method);
+			attributeMethods.add(method);
 		}
 	}
 	

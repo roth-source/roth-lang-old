@@ -1,5 +1,6 @@
 package roth.lang.java;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Parameter;
@@ -9,6 +10,7 @@ import roth.lang.Set;
 
 public class JavaMethod extends JavaCode
 {
+	protected Set<JavaAnnotationDeclaration> annotationDeclarations = new Set<>();
 	protected JavaAccess access;
 	protected boolean _static;
 	protected boolean _final;
@@ -29,6 +31,10 @@ public class JavaMethod extends JavaCode
 	
 	public JavaMethod(Method method)
 	{
+		for(Annotation declaredAnnotation : method.getDeclaredAnnotations())
+		{
+			annotationDeclarations.add(new JavaAnnotationDeclaration(declaredAnnotation));
+		}
 		access = JavaAccess.fromModifiers(method.getModifiers());
 		_static = Modifier.isStatic(method.getModifiers());
 		_final = Modifier.isFinal(method.getModifiers());

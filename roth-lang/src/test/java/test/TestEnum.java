@@ -13,7 +13,7 @@ public enum TestEnum
 	
 	public static void main(String[] args)
 	{
-		JavaType type = JavaType.get(TestAnnotationInterface.class);
+		JavaType type = JavaType.get(TestAnnotation.class);
 		//JavaType type = JavaType.get(TestEnum.class);
 		System.out.println(type.toJava(null));
 	}
