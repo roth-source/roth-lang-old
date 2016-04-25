@@ -84,24 +84,24 @@ public class JavaWorkspace
 			for(Entry<File, Set<Class<?>>> jarFileClassesEntry : classLoader.getJarFileClassesMap().entrySet())
 			{
 				File jarFile = jarFileClassesEntry.getKey();
-				for(Class<?> klass : jarFileClassesEntry.getValue())
+				for(Class<?> _class : jarFileClassesEntry.getValue())
 				{
-					if(JavaType.isValid(klass))
+					if(JavaType.isValid(_class))
 					{
-						String fullName = JavaType.getFullName(klass);
+						String fullName = JavaType.getFullName(_class);
 						JavaType type = this.getType(fullName);
 						if(type == null)
 						{
-							type = JavaType.get(klass);
+							type = JavaType.get(_class);
 							if(type != null)
 							{
 								this.putType(fullName, type.setJarFile(jarFile));
 								//System.out.println(fullName);
 							}
 						}
-						else if(type.getHashCode() != klass.hashCode())
+						else if(type.getHashCode() != _class.hashCode())
 						{
-							type = JavaType.get(klass);
+							type = JavaType.get(_class);
 							if(type != null)
 							{
 								this.putType(fullName, type.setJarFile(jarFile));

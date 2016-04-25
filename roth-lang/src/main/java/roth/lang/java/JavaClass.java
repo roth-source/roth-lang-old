@@ -22,6 +22,7 @@ public class JavaClass extends JavaType
 	protected Set<String> staticTypes = new Set<>();
 	protected Set<JavaField> memberFields = new Set<>();
 	protected Set<JavaConstructor> constructors = new Set<>();
+	protected Set<JavaMethod> abstractMethods = new Set<>();
 	protected Set<JavaMethod> memberMethods = new Set<>();
 	protected Set<String> memberTypes = new Set<>();
 	
@@ -30,21 +31,21 @@ public class JavaClass extends JavaType
 		
 	}
 	
-	public JavaClass(Class<?> klass)
+	public JavaClass(Class<?> _class)
 	{
-		super(klass);
-		_abstract = Modifier.isAbstract(klass.getModifiers());
-		_final = Modifier.isFinal(klass.getModifiers());
-		for(TypeVariable<?> typeVariable : klass.getTypeParameters())
+		super(_class);
+		_abstract = Modifier.isAbstract(_class.getModifiers());
+		_final = Modifier.isFinal(_class.getModifiers());
+		for(TypeVariable<?> typeVariable : _class.getTypeParameters())
 		{
 			typeVariables.add(new JavaTypeVariable(typeVariable));
 		}
-		extendsTypeDeclaration = JavaTypeDeclaration.get(klass.getGenericSuperclass());
-		for(Type type : klass.getGenericInterfaces())
+		extendsTypeDeclaration = JavaTypeDeclaration.get(_class.getGenericSuperclass());
+		for(Type type : _class.getGenericInterfaces())
 		{
 			implementsTypeDeclarations.add(JavaTypeDeclaration.get(type));
 		}
-		for(Field declaredField : klass.getDeclaredFields())
+		for(Field declaredField : _class.getDeclaredFields())
 		{
 			JavaField field = new JavaField(declaredField);
 			if(field.isStatic())
@@ -63,23 +64,27 @@ public class JavaClass extends JavaType
 				memberFields.add(field);
 			}
 		}
-		for(Constructor<?> declaredConstructor : klass.getDeclaredConstructors())
+		for(Constructor<?> declaredConstructor : _class.getDeclaredConstructors())
 		{
 			constructors.add(new JavaConstructor(declaredConstructor));
 		}
-		for(Method declaredMethod : klass.getDeclaredMethods())
+		for(Method declaredMethod : _class.getDeclaredMethods())
 		{
 			JavaMethod method = new JavaMethod(declaredMethod);
 			if(method.isStatic())
 			{
 				staticMethods.add(method);
 			}
+			else if(method.isAbstract())
+			{
+				abstractMethods.add(method);
+			}
 			else
 			{
 				memberMethods.add(method);
 			}
 		}
-		for(Class<?> declaredClass : klass.getDeclaredClasses())
+		for(Class<?> declaredClass : _class.getDeclaredClasses())
 		{
 			String fullName = JavaType.getFullName(declaredClass);
 			if(Modifier.isStatic(declaredClass.getModifiers()))
@@ -222,6 +227,20 @@ public class JavaClass extends JavaType
 				builder.append(NEW_LINE);
 				builder.append(TAB);
 				constructor.toJava(workspace, builder, name);
+				builder.append(NEW_LINE);
+				builder.append(TAB);
+			}
+		}
+		if(!abstractMethods.isEmpty())
+		{
+			builder.append(NEW_LINE);
+			builder.append(TAB);
+			builder.append("// ABSTRACT METHODS");
+			for(JavaMethod abstractMethod : abstractMethods)
+			{
+				builder.append(NEW_LINE);
+				builder.append(TAB);
+				abstractMethod.toJava(workspace, builder);
 				builder.append(NEW_LINE);
 				builder.append(TAB);
 			}

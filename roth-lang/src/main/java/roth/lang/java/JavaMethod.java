@@ -20,6 +20,7 @@ public class JavaMethod extends JavaCode
 	protected String name;
 	protected Set<JavaParameter> parameters = new Set<>(); 
 	protected Set<String> throwsTypes = new Set<>();
+	protected Object defaultValue;
 	
 	protected JavaMethod()
 	{
@@ -44,11 +45,17 @@ public class JavaMethod extends JavaCode
 		{
 			parameters.add(new JavaParameter(parameter));
 		}
+		defaultValue = method.getDefaultValue();
 	}
 	
 	public boolean isStatic()
 	{
 		return _static;
+	}
+	
+	public boolean isAbstract()
+	{
+		return _abstract;
 	}
 	
 	@Override

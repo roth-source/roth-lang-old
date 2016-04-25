@@ -22,19 +22,19 @@ public abstract class JavaType extends JavaCode
 		
 	}
 	
-	protected JavaType(Class<?> klass)
+	protected JavaType(Class<?> _class)
 	{
-		hashCode = klass.hashCode();
-		_package = klass.getPackage().getName();
-		Class<?> enclosingClass = klass;
+		hashCode = _class.hashCode();
+		_package = _class.getPackage().getName();
+		Class<?> enclosingClass = _class;
 		while((enclosingClass = enclosingClass.getEnclosingClass()) != null)
 		{
 			enclosures.addFirst(enclosingClass.getSimpleName());
 		}
-		access = JavaAccess.fromModifiers(klass.getModifiers());
-		_static = Modifier.isStatic(klass.getModifiers());
-		member = klass.isMemberClass();
-		name = klass.getSimpleName();
+		access = JavaAccess.fromModifiers(_class.getModifiers());
+		_static = Modifier.isStatic(_class.getModifiers());
+		member = _class.isMemberClass();
+		name = _class.getSimpleName();
 	}
 	
 	public File getJarFile()
@@ -182,26 +182,26 @@ public abstract class JavaType extends JavaCode
 		return true;
 	}
 	
-	public static JavaType get(Class<?> klass)
+	public static JavaType get(Class<?> _class)
 	{
 		JavaType type = null;
 		try
 		{
-			if(klass.isAnnotation())
+			if(_class.isAnnotation())
 			{
-				type = new JavaAnnotationInterface(klass);
+				type = new JavaAnnotationInterface(_class);
 			}
-			else if(klass.isEnum())
+			else if(_class.isEnum())
 			{
-				type = new JavaEnum(klass);
+				type = new JavaEnum(_class);
 			}
-			else if(klass.isInterface())
+			else if(_class.isInterface())
 			{
-				type = new JavaInterface(klass);
+				type = new JavaInterface(_class);
 			}
-			else if(!klass.isAnonymousClass() && !klass.isLocalClass())
+			else if(!_class.isAnonymousClass() && !_class.isLocalClass())
 			{
-				type = new JavaClass(klass);
+				type = new JavaClass(_class);
 			}
 		}
 		catch(Throwable e)
@@ -211,12 +211,12 @@ public abstract class JavaType extends JavaCode
 		return type;
 	}
 	
-	public static String getFullName(Class<?> klass)
+	public static String getFullName(Class<?> _class)
 	{
 		String fullName = null;
 		try
 		{
-			fullName = klass.getCanonicalName();
+			fullName = _class.getCanonicalName();
 		}
 		catch(Throwable e)
 		{
@@ -225,12 +225,12 @@ public abstract class JavaType extends JavaCode
 		return fullName;
 	}
 	
-	public static boolean isValid(Class<?> klass)
+	public static boolean isValid(Class<?> _class)
 	{
 		boolean valid = false;
 		try
 		{
-			valid = klass.isAnnotation() || klass.isEnum() || klass.isInterface() || (!klass.isAnonymousClass() && !klass.isLocalClass());
+			valid = _class.isAnnotation() || _class.isEnum() || _class.isInterface() || (!_class.isAnonymousClass() && !_class.isLocalClass());
 		}
 		catch(Throwable e)
 		{

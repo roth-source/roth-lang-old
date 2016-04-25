@@ -2,7 +2,8 @@ package test;
 
 import roth.lang.java.JavaType;
 
-public class Test1
+@TestAnnotationInterface(test2 = "asdf")
+public class TestClass
 {
 	public static final String TEST = "1234";
 	static String test2 = "1234";
@@ -14,13 +15,13 @@ public class Test1
 	
 	public static void main(String[] args)
 	{
-		JavaType type = JavaType.get(Test1.class);
+		JavaType type = JavaType.get(TestClass.class);
 		System.out.println(type.toJava(null));
 	}
 	
 	protected String test3 = "1234";
 	
-	public Test1(String test)
+	public TestClass(String test)
 	{
 		
 	}

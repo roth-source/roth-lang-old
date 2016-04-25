@@ -131,9 +131,9 @@ public class Array<E> extends ArrayList<E>
 	}
 	
 	@SuppressWarnings("unchecked")
-	public E[] toArray(Class<E> klass)
+	public E[] toArray(Class<E> _class)
 	{
-		return super.toArray((E[]) java.lang.reflect.Array.newInstance(klass, size()));
+		return super.toArray((E[]) java.lang.reflect.Array.newInstance(_class, size()));
 	}
 	
 	@Override

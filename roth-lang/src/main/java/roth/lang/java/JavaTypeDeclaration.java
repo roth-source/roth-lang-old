@@ -15,14 +15,14 @@ public class JavaTypeDeclaration extends JavaDeclaration
 		
 	}
 	
-	public JavaTypeDeclaration(Class<?> klass)
+	public JavaTypeDeclaration(Class<?> _class)
 	{
-		while(klass.isArray())
+		while(_class.isArray())
 		{
-			klass = klass.getComponentType();
+			_class = _class.getComponentType();
 			dimensions++;
 		}
-		type = klass.getCanonicalName();
+		type = _class.getCanonicalName();
 	}
 	
 	public JavaTypeDeclaration(ParameterizedType parameterizedType, int dimensions)
