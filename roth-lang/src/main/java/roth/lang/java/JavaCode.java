@@ -1,7 +1,6 @@
 package roth.lang.java;
 
 import roth.lang.Characters;
-import roth.lang.java._enum.JavaReserved;
 
 public abstract class JavaCode implements Characters, JavaReserved
 {
