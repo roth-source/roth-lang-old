@@ -1,4 +1,4 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -8,6 +8,7 @@ import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 
 import roth.lang.Set;
+import roth.lang.java.JavaWorkspace;
 
 public class JavaClass extends JavaType
 {
@@ -99,13 +100,13 @@ public class JavaClass extends JavaType
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		builder.append(PACKAGE);
 		builder.append(SPACE);

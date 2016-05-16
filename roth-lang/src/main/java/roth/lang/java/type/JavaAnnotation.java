@@ -1,8 +1,9 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.Method;
 
 import roth.lang.Set;
+import roth.lang.java.JavaWorkspace;
 
 public class JavaAnnotation extends JavaType
 {
@@ -24,13 +25,13 @@ public class JavaAnnotation extends JavaType
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}

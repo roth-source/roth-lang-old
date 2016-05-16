@@ -1,60 +1,46 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.TypeVariable;
 
 import roth.lang.Set;
+import roth.lang.java.JavaWorkspace;
 
-public class JavaEnum extends JavaType
+public class JavaInterface extends JavaType
 {
-	protected Set<String> values = new Set<>();
+	protected boolean _abstract;
+	protected Set<JavaTypeVariable> typeVariables = new Set<>();
+	protected JavaTypeDeclaration extendsTypeDeclaration;
 	protected Set<JavaField> constants = new Set<>();
-	protected Set<JavaField> staticFields = new Set<>();
 	protected Set<JavaMethod> staticMethods = new Set<>();
 	protected Set<String> staticTypes = new Set<>();
-	protected Set<JavaField> memberFields = new Set<>();
-	protected Set<JavaConstructor> constructors = new Set<>();
 	protected Set<JavaMethod> abstractMethods = new Set<>();
-	protected Set<JavaMethod> memberMethods = new Set<>();
+	protected Set<JavaMethod> defaultMethods = new Set<>();
 	protected Set<String> memberTypes = new Set<>();
 	
-	
-	public JavaEnum()
+	public JavaInterface()
 	{
 		
 	}
 	
-	public JavaEnum(Class<?> _class)
+	public JavaInterface(Class<?> _class)
 	{
 		super(_class);
-		for(Enum<?> enumConstant : (Enum<?>[]) _class.getEnumConstants())
+		_abstract = Modifier.isAbstract(_class.getModifiers());
+		for(TypeVariable<?> typeVariable : _class.getTypeParameters())
 		{
-			values.add(enumConstant.name());
+			typeVariables.add(new JavaTypeVariable(typeVariable));
 		}
+		extendsTypeDeclaration = JavaTypeDeclaration.get(_class.getGenericSuperclass());
 		for(Field declaredField : _class.getDeclaredFields())
 		{
 			JavaField field = new JavaField(declaredField);
-			if(field.isStatic())
+			if(field.isStatic() && field.isFinal())
 			{
-				if(field.isFinal())
-				{
-					constants.add(field);
-				}
-				else
-				{
-					staticFields.add(field);
-				}
+				constants.add(field);
 			}
-			else
-			{
-				memberFields.add(field);
-			}
-		}
-		for(Constructor<?> declaredConstructor : _class.getDeclaredConstructors())
-		{
-			constructors.add(new JavaConstructor(declaredConstructor));
 		}
 		for(Method declaredMethod : _class.getDeclaredMethods())
 		{
@@ -69,7 +55,7 @@ public class JavaEnum extends JavaType
 			}
 			else
 			{
-				memberMethods.add(method);
+				defaultMethods.add(method);
 			}
 		}
 		for(Class<?> declaredClass : _class.getDeclaredClasses())
@@ -87,13 +73,13 @@ public class JavaEnum extends JavaType
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}

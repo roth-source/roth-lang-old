@@ -1,4 +1,4 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -7,6 +7,9 @@ import java.lang.reflect.Parameter;
 import java.lang.reflect.TypeVariable;
 
 import roth.lang.Set;
+import roth.lang.java.JavaCode;
+import roth.lang.java.JavaWorkspace;
+import roth.lang.java._enum.JavaAccess;
 
 public class JavaMethod extends JavaCode
 {
@@ -65,13 +68,13 @@ public class JavaMethod extends JavaCode
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		access.toJava(builder);
 		if(_static)

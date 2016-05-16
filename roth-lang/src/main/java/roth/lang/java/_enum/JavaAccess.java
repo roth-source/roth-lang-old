@@ -1,4 +1,4 @@
-package roth.lang.java;
+package roth.lang.java._enum;
 
 import java.lang.reflect.Modifier;
 

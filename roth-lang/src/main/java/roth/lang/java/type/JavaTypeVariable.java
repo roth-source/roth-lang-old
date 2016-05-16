@@ -1,9 +1,11 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 
 import roth.lang.List;
+import roth.lang.java.JavaCode;
+import roth.lang.java.JavaWorkspace;
 
 public class JavaTypeVariable extends JavaCode
 {
@@ -28,13 +30,13 @@ public class JavaTypeVariable extends JavaCode
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		builder.append(name);
 		if(!extendsDeclarations.isEmpty())

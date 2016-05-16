@@ -1,4 +1,4 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.io.File;
 import java.lang.annotation.Annotation;
@@ -6,6 +6,8 @@ import java.lang.reflect.Modifier;
 
 import roth.lang.List;
 import roth.lang.Set;
+import roth.lang.java.JavaCode;
+import roth.lang.java._enum.JavaAccess;
 
 public abstract class JavaType extends JavaCode
 {

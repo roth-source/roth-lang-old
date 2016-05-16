@@ -1,6 +1,7 @@
 package roth.lang.java;
 
 import roth.lang.Characters;
+import roth.lang.java._enum.JavaReserved;
 
 public abstract class JavaCode implements Characters, JavaReserved
 {
@@ -17,7 +18,7 @@ public abstract class JavaCode implements Characters, JavaReserved
 		return builder.toString();
 	}
 	
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
@@ -29,7 +30,7 @@ public abstract class JavaCode implements Characters, JavaReserved
 		return builder.toString();
 	}
 	
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}

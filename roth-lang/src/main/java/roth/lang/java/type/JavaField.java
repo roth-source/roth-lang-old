@@ -1,10 +1,12 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 import roth.lang.Set;
+import roth.lang.java.JavaWorkspace;
+import roth.lang.java._enum.JavaAccess;
 
 public class JavaField extends JavaVariable
 {
@@ -45,13 +47,13 @@ public class JavaField extends JavaVariable
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		access.toJava(builder);
 		if(_static)

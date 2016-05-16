@@ -1,9 +1,10 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 
 import roth.lang.List;
+import roth.lang.java.JavaWorkspace;
 
 public class JavaWildcard extends JavaGeneric
 {
@@ -34,13 +35,13 @@ public class JavaWildcard extends JavaGeneric
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		builder.append(QUESTION);
 		if(!extendsDeclarations.isEmpty())

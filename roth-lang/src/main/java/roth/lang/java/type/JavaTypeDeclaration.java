@@ -1,9 +1,10 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 import roth.lang.List;
+import roth.lang.java.JavaWorkspace;
 
 public class JavaTypeDeclaration extends JavaDeclaration
 {
@@ -44,13 +45,13 @@ public class JavaTypeDeclaration extends JavaDeclaration
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		builder.append(type);
 		if(!generics.isEmpty())

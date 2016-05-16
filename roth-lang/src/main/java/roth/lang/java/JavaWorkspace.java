@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 
 import roth.lang.Map;
 import roth.lang.Set;
+import roth.lang.java.type.JavaType;
 
 public class JavaWorkspace
 {

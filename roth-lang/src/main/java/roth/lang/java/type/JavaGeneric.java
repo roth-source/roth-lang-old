@@ -1,7 +1,9 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
+
+import roth.lang.java.JavaCode;
 
 public abstract class JavaGeneric extends JavaCode
 {

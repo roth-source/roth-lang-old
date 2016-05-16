@@ -1,4 +1,4 @@
-package roth.lang.java;
+package roth.lang.java._enum;
 
 public interface JavaReserved
 {

@@ -1,9 +1,10 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Parameter;
 
 import roth.lang.Set;
+import roth.lang.java.JavaWorkspace;
 
 public class JavaParameter extends JavaVariable
 {
@@ -25,13 +26,13 @@ public class JavaParameter extends JavaVariable
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		declaration.toJava(workspace, builder);
 		builder.append(SPACE);

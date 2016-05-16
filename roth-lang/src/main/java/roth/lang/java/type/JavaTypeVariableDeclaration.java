@@ -1,6 +1,8 @@
-package roth.lang.java;
+package roth.lang.java.type;
 
 import java.lang.reflect.TypeVariable;
+
+import roth.lang.java.JavaWorkspace;
 
 public class JavaTypeVariableDeclaration extends JavaDeclaration
 {
@@ -18,13 +20,13 @@ public class JavaTypeVariableDeclaration extends JavaDeclaration
 	}
 	
 	@Override
-	protected void toRoth(JavaWorkspace workspace, StringBuilder builder)
+	public void toRoth(JavaWorkspace workspace, StringBuilder builder)
 	{
 		
 	}
 	
 	@Override
-	protected void toJava(JavaWorkspace workspace, StringBuilder builder)
+	public void toJava(JavaWorkspace workspace, StringBuilder builder)
 	{
 		builder.append(name);
 		for(int i = 0; i < dimensions; i++)

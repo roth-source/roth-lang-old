@@ -1,6 +1,6 @@
 package test;
 
-import roth.lang.java.JavaType;
+import roth.lang.java.type.JavaType;
 
 public interface TestInterface
 {
